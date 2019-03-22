@@ -40,5 +40,11 @@ export default {
   position: absolute;
   left: -200%;
 }
+.van-nav-bar {
+  background:#1989fa;
+}
+.van-nav-bar__title {
+    color: #fff;
+}
 
 </style>

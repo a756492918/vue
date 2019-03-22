@@ -9,6 +9,7 @@ import Vip from '@/components/Vip'
 import Newslist from '@/components/News/Newslist'
 import Photolist from '@/components/News/Photolist'
 import Goodslist from '@/components/News/Goodslist'
+import Newsinfo from '@/components/News/Newsinfo'
 Vue.use(Router)   //注册路由
 
 //暴露路由规则
@@ -44,6 +45,9 @@ export default new Router({
     {
       path: '/home/goodslist',
       component: Goodslist,
+    },{
+      path:'/home/newslist/newsinfo/:id',
+      component:Newsinfo
     }
   ]
 })
