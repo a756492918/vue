@@ -24,14 +24,13 @@ export default {
     this.getImg();
   },
   methods: {
-    getImg() {
-      this.$http.get("/api/getlunbo").then(res => {
-        const {
-          data: { message },
-          status
-        } = res;
+    async getImg() {
+    const {data: { message },status} = await this.$http.get("/api/getlunbo")
+        // const {
+        //   data: { message },
+        //   status
+        // } = res;
         this.sweperlist = message;
-      });
     }
   },
   components:{
