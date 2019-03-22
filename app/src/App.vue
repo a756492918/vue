@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- header  -->
-    <van-nav-bar title="一飞冲天"/>
+    <van-nav-bar title="Vue·项目"/>
     <!-- header end  -->
    <transition enter-active-class="fadeInRight" leave-active-class="fadeOutLeft">
       <router-view class="animated"></router-view>

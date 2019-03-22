@@ -9,10 +9,15 @@ Vue.use(NavBar).use(Tabbar).use(TabbarItem);
 // 轮播模块
 import { Swipe, SwipeItem } from 'vant';
 Vue.use(Swipe).use(SwipeItem);
+
+import { Card } from 'vant';
+Vue.use(Card);
+
 import  "animate.css/animate.css"
 // axios模块
 import axios from 'axios'
 Vue.prototype.$http=axios
+
 axios.defaults.baseURL='http://localhost:5000'
 Vue.config.productionTip = false
 
