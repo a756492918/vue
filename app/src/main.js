@@ -11,13 +11,13 @@ import { Swipe, SwipeItem } from 'vant';
 Vue.use(Swipe).use(SwipeItem);
 
 import { Card } from 'vant';
-Vue.use(Card);
+Vue.use(Card);                                                                                                                                                                                                                                                                                                                                                                                                                            
 
 // 按钮模块
 import { Button } from 'vant';
 Vue.use(Button);
 
-import  "animate.css/animate.css"
+import  "animate.css"
 
 // axios模块
 import axios from 'axios'

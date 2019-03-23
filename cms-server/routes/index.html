@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=`, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="/axios.js"></script>
+</head>
+
+<body>
+
+  express server
+
+  <script>
+    const axiosPost = async () => {
+      const { data, data: { status, message } } = await axios({
+        url: 'http://127.0.0.1:5000/api/postaxios',
+        method: 'post',
+        data: {
+          data: {
+            name: 'fly',
+            age: 20
+          }
+        },
+        header: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      })
+
+      console.log(message);
+
+    }
+    axiosPost()
+  </script>
+
+</body>
+
+</html>
