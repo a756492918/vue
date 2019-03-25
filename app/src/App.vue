@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- header  -->
-    <van-nav-bar title="Vue·项目"/>
+    <van-nav-bar title="Vue·项目" fixed/>
     <!-- header end  -->
    <transition enter-active-class="fadeInRight" leave-active-class="fadeOutLeft">
       <router-view class="animated"></router-view>
@@ -35,7 +35,13 @@ export default {
   overflow-x: hidden;
   color: #2c3e50;
 }
-
+.van-nav-bar {
+  z-index: 990 !important;
+}
+.animated {
+  margin-top: 46px;
+  padding-bottom: 50px !important;
+}
 .v-leave-to {
   position: absolute;
   left: -200%;

@@ -7,8 +7,8 @@ import { NavBar ,Tabbar, TabbarItem } from 'vant';
 Vue.use(NavBar).use(Tabbar).use(TabbarItem);
 
 // 轮播模块
-import { Swipe, SwipeItem } from 'vant';
-Vue.use(Swipe).use(SwipeItem);
+import { Swipe, SwipeItem,Lazyload  } from 'vant';
+Vue.use(Swipe).use(SwipeItem).use(Lazyload);
 
 import { Card } from 'vant';
 Vue.use(Card);                                                                                                                                                                                                                                                                                                                                                                                                                            
@@ -16,6 +16,9 @@ Vue.use(Card);
 // 按钮模块
 import { Button } from 'vant';
 Vue.use(Button);
+
+import { Tab, Tabs } from 'vant';
+Vue.use(Tab).use(Tabs);
 
 import  "animate.css"
 

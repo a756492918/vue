@@ -1,11 +1,7 @@
 <template>
   <!-- sweper -->
   <div>
-    <van-swipe :autoplay="3000" indicator-color="white">
-      <van-swipe-item v-for="item in sweperlist" :key="item.id">
-        <img :src="item.img" alt>
-      </van-swipe-item>
-    </van-swipe>
+    <Swipe :sweperlist='sweperlist'></Swipe>
     <!-- sweper end-->
 
     <!-- main -->
@@ -16,6 +12,7 @@
 
 <script>
 import gird from './Gird/Gird.vue'
+import Swipe from './swipe/Swipe.vue'
 export default {
   data: () => ({
     sweperlist: []
@@ -34,7 +31,8 @@ export default {
     }
   },
   components:{
-    gird
+    gird,
+    Swipe
   }
 };
 </script>

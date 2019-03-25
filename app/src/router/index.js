@@ -10,6 +10,8 @@ import Newslist from '@/components/News/Newslist'
 import Photolist from '@/components/News/Photolist'
 import Goodslist from '@/components/News/Goodslist'
 import Newsinfo from '@/components/News/Newsinfo'
+import Photoinfo from '@/components/News/Photoinfo'
+import Goodsinfo from '@/components/News/Goodsinfo'
 Vue.use(Router)   //注册路由
 
 //暴露路由规则
@@ -48,6 +50,14 @@ export default new Router({
     },{
       path:'/home/newslist/newsinfo/:id',
       component:Newsinfo
+    },
+    {
+      path:'/home/Photoinfo/:id',
+      component:Photoinfo
+    },
+    {
+      path:'/home/goodsinfo/:id', 
+      component:Goodsinfo
     }
   ]
 })
