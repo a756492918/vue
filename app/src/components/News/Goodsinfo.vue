@@ -1,8 +1,11 @@
 <template>
   <div class="goodsinfo">
+    <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
+    </transition>
     <!-- 轮播区域 -->
     <div class="panel">
-      <!-- <swiper :lunbotuList="lunbotuList" class="my-swiper"></swiper> -->
+      <swiper :sweperlist="sweperlist" class="my-swiper"></swiper>
     </div>
     <!-- 购买区域 -->
     <div class="panel">
@@ -11,9 +14,9 @@
       <div class="panel-body">
         <div class="price-group">
           市场价格:
-          <span class="old"></span>
+          <span class="old">{{goodsinfo.market_price}}</span>
           销售价格:
-          <span class="new"></span>
+          <span class="new">{{goodsinfo.sell_price}}</span>
         </div>
         <div class="stepper">
           <div class="number">购买数量:</div>
@@ -22,11 +25,11 @@
             plus 点击添加的时候触发 
             minus 点击减少的时候触发  
           -->
-          <van-stepper v-model="value" integer class="number" />
+          <van-stepper v-model="value" integer class="number"/>
         </div>
         <div class="btn-group">
           <van-button type="primary" size="small">立即购买</van-button>
-          <van-button type="danger" :disabled="btnFlag" size="small" >加入购物车</van-button>
+          <van-button type="danger" :disabled="btnFlag" size="small" @click="add">加入购物车</van-button>
         </div>
       </div>
     </div>
@@ -45,12 +48,13 @@
 </template>
 
 <script>
+import swiper from "../swipe/Swipe.vue";
 import { Toast } from "vant";
 export default {
   data: () => ({
     id: "",
     value: 1,
-    lunbotuList: [],
+    sweperlist: [],
     goodsinfo: {},
     step: 1,
     btnFlag: false,
@@ -59,21 +63,18 @@ export default {
     yDist: 0
   }),
   created() {
-    this.id = this.$route.params.id;
     this.getlunbotu();
-    this.getGoodsInfo();
+    this.getGoodsInfo()
   },
   methods: {
     async getlunbotu() {
-      // 因为当前的这个id 应该是从101 开始 但是我们传递过来的id 是1 id是string类型需要先转换为number
+      this.id = this.$route.params.id; // 获取路由传参
       let id = Number(this.id) + 100;
       const {
-        data: { status, message }
+        data: { message }
       } = await this.$http.get("api/getthumimages/" + id);
-
-      if (status === 0) {
-        this.lunbotuList = message;
-      }
+      this.sweperlist = message;
+      console.log(this.sweperlist);
     },
     async getGoodsInfo() {
       // 获取商品的信息
@@ -82,62 +83,47 @@ export default {
       } = await this.$http.get("api/goods/getinfo/" + this.id);
       if (status === 0) {
         this.goodsinfo = message;
+        console.log(this.goodsinfo); 
       } else {
         Toast("获取商品信息失败");
       }
     },
-    addToCart() {
-      var goodsinfo = {
-        id: this.id,
-        count: this.value,
-        price: this.goodsinfo.sell_price,
-        selected: true,
-        timer: null
-      };
-      // 调用 store 中的 mutations 来将商品加入购物车
-      this.$store.commit("addToCar", goodsinfo);
-
-      this.ballFlag = !this.ballFlag;
-      // // 按钮先禁用
-      this.btnFlag = true;
-      setTimeout(() => {
-        // 再次把禁用效果取消
-        this.btnFlag = false;
-      }, 500);
+    add() {
+      var car = { id: this.id, count: this.value ,price: this.goodsinfo.sell_price,};
+      this.$store.commit("add",car);
+      this.ballFlag = true;
+      
     },
-    getBound() {
-      // 获取小球的 在页面中的位置  left   top    (x,y)
-      const ballPosition = this.$refs.ball.getBoundingClientRect();
-      // 获取 徽标 在页面中的位置 不涉及到数据渲染的时候 可以使用少量的 js 原生
-      const badgePosition = document
-        .querySelector("#cart .van-info")
-        .getBoundingClientRect();
-      // 移动的位置 = 目标位置  -  起点位置
-      const xDist = badgePosition.left - ballPosition.left;
-      const yDist = badgePosition.top - ballPosition.top;
 
-      this.xDist = xDist; //#endregion
-      this.yDist = yDist;
+
+
+    getclent() {
+      var ball = document.querySelector(".ball");
+      var quan = document.querySelector("#quan .van-icon");
     },
-    beforeEnter(el) {
+    beforeEnter: el => {
       el.style.transform = "translate(0,0)";
     },
-    enter(el, done) {
+    enter: (el, done) => {
       el.offsetTop;
-      // 获取移动的距离
-      this.getBound();
-      // el.style.transform = `translate(${this.getBound().xDist}px,${
-      //   this.getBound().yDist
-      // }px)`;
+      var ball = document.querySelector(".ball").getBoundingClientRect();
+      var quan = document
+        .querySelector("#quan .van-icon")
+        .getBoundingClientRect();
+      const xDist = quan.left - ball.left;
+      const yDist = quan.top - ball.top;
 
-      el.style.transform = `translate(${this.xDist}px,${this.yDist}px)`;
-      el.style.transition = "all .4s cubic-bezier(.23,.88,.24,.88)";
+      el.style.transform = `translate(${xDist}px,${yDist}px)`;
+      el.style.transition = "all 1s cubic-bezier(.23,.88,.24,.88)";
       done();
     },
     afterEnter(el) {
       this.ballFlag = !this.ballFlag;
     }
   },
+  components: {
+    swiper
+  }
 };
 </script>
 

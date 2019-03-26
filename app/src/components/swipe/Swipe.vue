@@ -2,7 +2,7 @@
   <div>
     <van-swipe :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="item in sweperlist" :key="item.id">
-        <img :src="item.img" alt>
+        <img :src="item.img||item.src" alt>
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -11,7 +11,7 @@
 <script>
 export default {
   data: () => ({}),
-  props: ["sweperlist"]
+  props: ["sweperlist"],
 };
 </script>
 

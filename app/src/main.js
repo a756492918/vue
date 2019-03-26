@@ -3,8 +3,8 @@ import App from './App'
 import router from './router'
 
 // 按需引入
-import { NavBar ,Tabbar, TabbarItem } from 'vant';
-Vue.use(NavBar).use(Tabbar).use(TabbarItem);
+import { NavBar ,Tabbar, TabbarItem ,Stepper } from 'vant';
+Vue.use(NavBar).use(Tabbar).use(TabbarItem).use(Stepper);
 
 // 轮播模块
 import { Swipe, SwipeItem,Lazyload  } from 'vant';
@@ -30,6 +30,7 @@ Vue.prototype.$http=axios
 // moment
 import moment from 'moment'
 
+import store from './store/index'
 
 // 全局过滤器
 Vue.filter('data',(time,tem='YYYY-MM-DD hh:mm:ss')=>{
@@ -42,6 +43,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
