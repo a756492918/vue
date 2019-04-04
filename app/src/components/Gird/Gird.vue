@@ -19,37 +19,37 @@ export default {
         id: 1,
         to: "/home/newslist",
         title: "新闻资讯",
-        src: "/static/gird/menu1.png"
+        src: "static/gird/menu1.png"
       },
       {
         id: 2,
         to: "/home/photolist",
         title: "图片分享",
-        src: "/static/gird/menu2.png"
+        src: "static/gird/menu2.png"
       },
       {
         id: 3,
         to: "/home/goodslist",
         title: "商品购买",
-        src: "/static/gird/menu3.png"
+        src: "static/gird/menu3.png"
       },
       {
         id: 4,
         to: "/home/newslist",
         title: "留言反馈",
-        src: "/static/gird/menu4.png"
+        src: "static/gird/menu4.png"
       },
       {
         id: 5,
         to: "/home/newslist",
         title: "视频区域",
-        src: "/static/gird/menu5.png"
+        src: "./static/gird/menu5.png"
       },
       {
         id: 6,
         to: "/home/newslist",
         title: "联系我们",
-        src: "static/gird/menu6.png"
+        src: "./static/gird/menu6.png"
       }
     ]
   })

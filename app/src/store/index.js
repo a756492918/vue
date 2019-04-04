@@ -2,14 +2,12 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-
 export default new Vuex.Store({
   state: {
-    msg: [],
+    msg: JSON.parse(localStorage.getItem('key')||'[]'),
   },
   mutations: {
     add(state, car) {
-      state.msg=JSON.parse(localStorage.getItem('key')||'[]')
        var a =true
       state.msg.some(res => {
         if (res.id == car.id) {
@@ -26,6 +24,12 @@ export default new Vuex.Store({
     }
   },
   getters:{
-    
+     key(state){
+       var a =0;
+      state.msg.forEach(res=>{
+         a+=res.count
+      })
+      return a
+     }
   }
 })

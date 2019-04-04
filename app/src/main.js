@@ -3,8 +3,8 @@ import App from './App'
 import router from './router'
 
 // 按需引入
-import { NavBar ,Tabbar, TabbarItem ,Stepper } from 'vant';
-Vue.use(NavBar).use(Tabbar).use(TabbarItem).use(Stepper);
+import { NavBar ,Tabbar, TabbarItem ,Stepper,Switch,SubmitBar } from 'vant';
+Vue.use(NavBar).use(Tabbar).use(TabbarItem).use(Stepper).use(Switch).use(SubmitBar);
 
 // 轮播模块
 import { Swipe, SwipeItem,Lazyload  } from 'vant';
